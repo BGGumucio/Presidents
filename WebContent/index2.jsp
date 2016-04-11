@@ -135,7 +135,7 @@
 
 
 									<div class="col-xs-5 col-sm-4 col-md-3 littlePic spec center-block" >
-										<a href="${president.link}" target="_blank" class="thumbnail smallPresPic nobrdrnobckgrnd">
+										<a href="${president.presSubmit}" target="_blank" class="thumbnail smallPresPic nobrdrnobckgrnd">
 											<img src="${president.imgpath}" alt="${president.name}">
 										</a>
 										<b class="text-center tiny-image-name">${president.name}</b>

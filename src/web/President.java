@@ -7,9 +7,11 @@ public class President {
     private String bio;
     private String link;
     private String imgpath;
+    private String presSubmit;
+    
     public President() {
     }
-    public President(int termnumber, String name, String years, String party, String bio, String link, String imgpath) {
+    public President(int termnumber, String name, String years, String party, String bio, String link, String imgpath, String presSubmit) {
         super();
         this.termnumber = termnumber;
         this.name = name;
@@ -18,6 +20,7 @@ public class President {
         this.bio = bio;
         this.link = link;
         this.imgpath = imgpath;
+        this.presSubmit = presSubmit;
     }
     public int getTermnumber() {
         return termnumber;
@@ -61,7 +64,11 @@ public class President {
     public void setImgpath(String imgpath) {
         this.imgpath = imgpath;
     }
-    @Override
+    
+    public String getPresSubmit() {
+		return presSubmit;
+	}
+	@Override
     public String toString() {
         return "President [termnumber=" + termnumber + ", name=" + name + ", years=" + years + ", party=" + party
                 + ", bio=" + bio + ", link=" + link + ", imgpath=" + imgpath + "]";
