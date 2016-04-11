@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 @WebServlet("/presServlet")
 public class PresServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private List<President> presList;
+    private List<President> presList1;
     private  int presNum =0;
     
      
@@ -24,31 +24,23 @@ public class PresServlet extends HttpServlet {
          house = new Whitehouse(getServletContext());
      }
    
-//    public PresServlet() {
-//        
-//    }
-    
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //Get data from the user
         String incomingNumber = request.getParameter("presNum");//The number the user sends in as a String
-//        String submit = request.getParameter("submit");
-//        String next = request.getParameter("next");
-//        String previous = request.getParameter("previous");
-        //String party = request.getParameter("party");
+
         String option = request.getParameter("option");//This is the common name for submit, next, and previous
         HttpSession session = request.getSession();
         // Save the bean somewhere the JSP can find it
-        if (session.getAttribute("presList") == null) {
+        if (session.getAttribute("presList1") == null) {
             // first time
-            session.setAttribute("presList", new ArrayList<President>());
+            session.setAttribute("presList1", new ArrayList<President>());
         }
-        presList = (List<President>)session.getAttribute("presList");
+        presList1 = (List<President>)session.getAttribute("presList1");
         //Determine what the user wants done with the information
        
-        System.out.println(incomingNumber);
+//        System.out.println(incomingNumber);
         President nextPres;
-//      if(incomingNumber != null){
-//        party = null;
+
             switch(option){
             case "submit":
                 if(incomingNumber.trim().equals("")){
@@ -73,19 +65,13 @@ public class PresServlet extends HttpServlet {
                     
                     //presNum = presNum;
                 nextPres = house.getPresident(presNum);
-               
-    //            // Save the bean somewhere the JSP can find it
-    //            if (session.getAttribute("presList") == null) {
-    //                // first time
-    //                session.setAttribute("presList", new ArrayList<President>());
-    //            }
-    //            presList = (List<President>)session.getAttribute("presList");
-                presList.add(nextPres);
-    //            for (President president : presList) {
-    //              System.out.println(president);
-    //                  }
-                request.setAttribute("presNum", presList.get(presList.size() - 1));
+ 
+                presList1.add(nextPres);
+
+                request.setAttribute("presNum", presList1.get(presList1.size() - 1));
+                presList1.clear();
                 request.getRequestDispatcher("/index.jsp").forward(request, response);
+               
                 break;
             case "next":
                 presNum += 1;
@@ -94,17 +80,13 @@ public class PresServlet extends HttpServlet {
                 }
                 
                     nextPres = house.getPresident(presNum);
+
                 
-    //            // Save the bean somewhere the JSP can find it
-    //            if (session.getAttribute("presList") == null) {
-    //                // first time
-    //                session.setAttribute("presList", new ArrayList<President>());
-    //            }
-    //            presList = (List<President>)session.getAttribute("presList");
-                
-                presList.add(nextPres);
-                request.setAttribute("presNum", presList.get(presList.size() - 1));
+                presList1.add(nextPres);
+                request.setAttribute("presNum", presList1.get(presList1.size() - 1));
+                presList1.clear();
                 request.getRequestDispatcher("/index.jsp").forward(request, response);
+               
                 break;
             case "previous":
                 this.presNum -=1;
@@ -112,57 +94,19 @@ public class PresServlet extends HttpServlet {
                     presNum = 1;
                 }
                 nextPres = house.getPresident(presNum);
-                // Save the bean somewhere the JSP can find it
-    //            if (session.getAttribute("presList") == null) {
-    //                // first time
-    //                session.setAttribute("presList", new ArrayList<President>());
-    //            }
-               // presList = (List<President>)session.getAttribute("presList");
-                presList.add(nextPres);
-                request.setAttribute("presNum", presList.get(presList.size() - 1));
+
+                presList1.add(nextPres);
+                request.setAttribute("presNum", presList1.get(presList1.size() - 1));
+                presList1.clear();
                 request.getRequestDispatcher("/index.jsp").forward(request, response);
+               
                 break;
-    //        case "Democrat":
-    //            List<President> sortByParty = house.getSorted("Democrat");
-    //            if (session.getAttribute("preslist") != null){
-    //                presList.clear();
-    //            }
-    //            session.setAttribute("presList", sortByParty);
-    //             presList = (List<President>)session.getAttribute("presList");
-    //            request.getRequestDispatcher("/index.jsp").forward(request, response);
-    //            break;
-                
+    
             
             }
-//      }else if(party != null){ 
-//        incomingNumber = null;
-//        System.out.println(party);
-//        switch(party){
-//        case "Democrat":
-//            List<President> sortByParty = house.getSorted("Democrat");
-//            if (session.getAttribute("preslist") != null){
-//                presList.clear();
-//            }
-//            session.setAttribute("presList", sortByParty);
-//             presList = (List<President>)session.getAttribute("presList");
-//            request.getRequestDispatcher("/index.jsp").forward(request, response);
-//            break;
-//        }
+
       }
-//        // Save the bean somewhere the JSP can find it
-//        HttpSession session = request.getSession();
-//        
-//        if (session.getAttribute("presList") == null) {
-//            // first time
-//            session.setAttribute("presList", new ArrayList<President>());
-//        }
-//        List<President> presList = 
-//                (List<President>)session.getAttribute("presList");
-//        presList.add(nextPres);
-////        request.setAttribute("calculator", calc);
-//        // Forward to the JSP
-//        request.getRequestDispatcher("/index.jsp").forward(request, response);
-//    }
+
     
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     
