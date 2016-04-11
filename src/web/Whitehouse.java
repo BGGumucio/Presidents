@@ -30,7 +30,7 @@ public class Whitehouse {
                 String bio = tokens[4].trim();
                 String link = tokens[5].trim();
                 String imgpath = "./imgs/" + termnumber +".jpg"; 
-                String presSubmit = "http://localhost:8080/Presidents/presServlet?presNum="+ termnumber + "&option=submit";
+                String presSubmit = "/Presidents/presServlet?presNum="+ termnumber + "&option=submit";
                 
                 presList.add(new President(termnumber, name, years, party, bio, link, imgpath, presSubmit));
 //              for (President string : presList) {                 
